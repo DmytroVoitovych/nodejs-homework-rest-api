@@ -1,25 +1,20 @@
-const express = require('express')
+const express = require('express');
+const {ctrGet, ctrGetId, ctrPost, ctrDell, ctrPut, ctrPatch  } = require('../../controlers/index'); 
+const check = require('../../check/funcCheck');
+const checkFormatId = require('../../validation/funcValidateId');
 
-const router = express.Router()
+const router = express.Router();
 
-router.get('/', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.get('/', check(ctrGet));
 
-router.get('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.get(`/:id`, checkFormatId, check(ctrGetId));
 
-router.post('/', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.post('/', check(ctrPost));
 
-router.delete('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.delete('/:id', checkFormatId, check(ctrDell));
 
-router.put('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.put('/:id', checkFormatId, check(ctrPut));
 
-module.exports = router
+router.patch('/:id/favorite', checkFormatId, check(ctrPatch));
+
+module.exports = router;
