@@ -1,4 +1,4 @@
-const logger = require('../models/contacts');
+const {Contact} = require('../models/contact');
 const {validation} = require('../validation/dataValidation'); 
 
 const funcPostContacts = async (req, res, next) => {
@@ -11,7 +11,7 @@ const funcPostContacts = async (req, res, next) => {
     }
     else {
          res.status(201).json({
-            status: 'success', code: 201, data: await logger.addContact(req.body).slice(-1)[0]
+             status: 'success', code: 201, data: await Contact.create(req.body) // метод для добавление в колекцию в мангуссе
         });
     }
    

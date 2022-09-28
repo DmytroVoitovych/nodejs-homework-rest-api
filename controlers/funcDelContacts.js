@@ -1,8 +1,8 @@
-const logger = require('../models/contacts');
+const {Contact} = require('../models/contact');
 
 const funcDelContacts = async (req, res, next) => {
     const { id } = req.params;
-    const removeId = await logger.removeContact(id);
+    const removeId = await Contact.findByIdAndRemove(id);
 
     if (removeId || removeId.length > 0) {
         return res.status(201).json({

@@ -1,8 +1,8 @@
 const {Contact} = require('../models/contact');
-const {validation} = require('../validation/dataValidation'); 
+const {validFavorite} = require('../validation/dataValidationFavorite'); 
 
-const funcPutContacts = async (req, res, next) => {
-    const { error } = validation(req.body);
+const funcPatchContactsFavorite = async (req, res, next) => {
+    const { error } = validFavorite(req.body);
 
     if (error) {
         const err = new Error(error.message);
@@ -25,4 +25,4 @@ const funcPutContacts = async (req, res, next) => {
     
 };
 
-module.exports = funcPutContacts;
+module.exports = funcPatchContactsFavorite;
