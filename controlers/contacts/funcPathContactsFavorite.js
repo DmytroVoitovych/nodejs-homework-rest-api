@@ -1,5 +1,5 @@
-const {Contact} = require('../models/contact');
-const {validFavorite} = require('../validation/dataValidationFavorite'); 
+const {Contact} = require('../../models/contact');
+const {validFavorite} = require('../../validation/dataValidationFavorite'); 
 
 const funcPatchContactsFavorite = async (req, res, next) => {
     const { error } = validFavorite(req.body);
