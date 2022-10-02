@@ -1,5 +1,5 @@
-const {Contact} = require('../models/contact');
-const {validation} = require('../validation/dataValidation'); 
+const {Contact} = require('../../models/contact');
+const {validation} = require('../../validation/dataValidation'); 
 
 const funcPutContacts = async (req, res, next) => {
     const { error } = validation(req.body);

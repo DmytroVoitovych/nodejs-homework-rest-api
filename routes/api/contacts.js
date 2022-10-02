@@ -1,20 +1,20 @@
 const express = require('express');
-const {ctrGet, ctrGetId, ctrPost, ctrDell, ctrPut, ctrPatch  } = require('../../controlers/index'); 
-const check = require('../../check/funcCheck');
+const {ctrGet, ctrGetId, ctrPost, ctrDell, ctrPut, ctrPatch  } = require('../../controlers/contacts/index'); 
+const {check, checkToken} = require('../../check/index');
 const checkFormatId = require('../../validation/funcValidateId');
 
 const router = express.Router();
 
-router.get('/', check(ctrGet));
+router.get('/', checkToken, check(ctrGet));
 
-router.get(`/:id`, checkFormatId, check(ctrGetId));
+router.get(`/:id`, checkToken, checkFormatId, check(ctrGetId));
 
-router.post('/', check(ctrPost));
+router.post('/', checkToken, check(ctrPost));
 
-router.delete('/:id', checkFormatId, check(ctrDell));
+router.delete('/:id', checkToken, checkFormatId, check(ctrDell));
 
-router.put('/:id', checkFormatId, check(ctrPut));
+router.put('/:id', checkToken, checkFormatId, check(ctrPut));
 
-router.patch('/:id/favorite', checkFormatId, check(ctrPatch));
+router.patch('/:id/favorite', checkToken, checkFormatId, check(ctrPatch));
 
 module.exports = router;

@@ -16,7 +16,11 @@ const contactSchema = Schema(  { // схема данных которые мо�
     favorite: {
       type: Boolean,
       default: false,
-    },
+  },
+    owner: { // что бы каждый пользватель видел только свои контакты
+      type: Schema.Types.ObjectId,
+      ref: 'user', // название колекции
+    }
 },{versionKey:false, timestamps:true});
 
 contactSchema.post("save", funcErrorCatch);

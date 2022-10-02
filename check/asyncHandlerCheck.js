@@ -1,4 +1,4 @@
-const funcCheck = (check) => {
+const asyncHandlerCheck = (check) => {
     return async (req,res,next) => {
       try {
           await check(req, res, next);
@@ -8,4 +8,4 @@ const funcCheck = (check) => {
     };
 };
 
-module.exports = funcCheck;
+module.exports = asyncHandlerCheck;
