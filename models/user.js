@@ -1,4 +1,4 @@
-const funcErrorCatch = require('../check/funcErrorCatch');
+const funcErrorCatch = require('../utils/funcErrorCatch');
 const { Schema, model } = require('mongoose');
 
 const userSchema = Schema(  { // схема данных которые может принимать база / строго типизирована
@@ -19,7 +19,12 @@ const userSchema = Schema(  { // схема данных которые може
   token: {
     type: String,
     default: null,
+    },
+  avatarURL: {
+    type: String,
+    required: true,
   },
+  
 
 },{versionKey:false, timestamps:true});
 

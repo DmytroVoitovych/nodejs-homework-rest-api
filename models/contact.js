@@ -1,4 +1,4 @@
-const funcErrorCatch = require('../check/funcErrorCatch');
+const funcErrorCatch = require('../utils/funcErrorCatch');
 const { Schema, model } = require('mongoose');
 
 const contactSchema = Schema(  { // схема данных которые может принимать база / строго типизирована

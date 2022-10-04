@@ -1,6 +1,6 @@
 const express = require('express');
 const {ctrGet, ctrGetId, ctrPost, ctrDell, ctrPut, ctrPatch  } = require('../../controlers/contacts/index'); 
-const {check, checkToken} = require('../../check/index');
+const {check, checkToken} = require('../../utils/index');
 const checkFormatId = require('../../validation/funcValidateId');
 
 const router = express.Router();
