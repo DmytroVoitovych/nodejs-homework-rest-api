@@ -15,6 +15,7 @@ const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 app.use(logger(formatsLogger));
 app.use(cors()); 
 app.use(express.json());
+app.use(express.static('public')); // настройка для того, что бы експрес знал где искать файлы 
 
 app.use('/api/contacts/auth', contactsAuthRouter); //роутер для работы с логинизацией
 app.use('/api/contacts', contactsRouter);

@@ -1,6 +1,7 @@
 const {User} = require('../../models/user');
 const { validation } = require('../../validation/dataValidationSignUp'); 
 const bcrypt = require('bcryptjs'); //хеширование
+const avatar = require('gravatar');
  
 const funcPostSignUp = async (req, res, next) => {
    
@@ -16,9 +17,11 @@ const funcPostSignUp = async (req, res, next) => {
     }
    
     else {
-        const {email, subscription} = await User.create({email: mail, password: hashPass});// метод для добавление в колекцию в мангуссе
+        const pathImg = await avatar.url(mail); // имитируем аватарку  
+        const {email, subscription, avatarURL } = await User.create({email: mail, password: hashPass, avatarURL: pathImg});// метод для добавление в колекцию в мангуссе
+        
         res.status(201).json({
-            status: 'success', code: 201, data:{user: {email, subscription} } 
+            status: 'success', code: 201, data:{user: {email, subscription, avatarURL } } 
         });
     }
    
