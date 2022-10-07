@@ -2,6 +2,8 @@ const {User} = require('../../models/user');
 const { validation } = require('../../validation/dataValidationSignUp'); 
 const bcrypt = require('bcryptjs'); //хеширование
 const avatar = require('gravatar');
+const sendEmail = require('../../utils/funcSendEmail');
+var randomstring = require("randomstring");
  
 const funcPostSignUp = async (req, res, next) => {
    
@@ -18,11 +20,22 @@ const funcPostSignUp = async (req, res, next) => {
    
     else {
         const pathImg = await avatar.url(mail); // имитируем аватарку  
-        const {email, subscription, avatarURL } = await User.create({email: mail, password: hashPass, avatarURL: pathImg});// метод для добавление в колекцию в мангуссе
+        const verificationToken = randomstring.generate({length: 12, charset: 'alphabetic'}); //создаем токен верификации
         
-        res.status(201).json({
-            status: 'success', code: 201, data:{user: {email, subscription, avatarURL } } 
+        const { email, subscription, avatarURL } = await User.create({ // метод для добавление в колекцию в мангуссе
+            email: mail, password: hashPass, avatarURL: pathImg, verificationToken
         });
+        
+            res.status(201).json({
+            status: 'success', code: 201, data:{user: {email, subscription, avatarURL } } 
+            });
+        
+        const letter = {
+            to: email, subject: 'Подтверждение регистрации на сайте',
+            html: `<a target='_blank' href='http://localhost:3006/api/contacts/auth/verify/${verificationToken}'>Нажмите для подтверждения</a>` //динамически сгереривонная ссылка для зарег пользвателя
+        };
+        
+        await sendEmail(letter);
     }
    
 };
