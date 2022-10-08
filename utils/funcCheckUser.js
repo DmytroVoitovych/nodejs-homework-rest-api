@@ -13,8 +13,15 @@ const funcCheckUser = async({ body },_,next) => {
             err.status = 401;
             throw err;
         }
-    
-        next();
+        else if (!user.verify) {// проверка верецирован ли эмейл
+            const err = new Error("Email not verify");
+            err.status = 400;
+            throw err;    
+        }
+        else {
+         next();   
+        }
+        
     } catch (err) {
         next(err);
     }

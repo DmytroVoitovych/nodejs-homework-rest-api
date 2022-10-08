@@ -4,6 +4,9 @@ const ctrCurrent = require('./funcGetCurrentUser');
 const ctrLogout = require('./funcGetLogout');
 const ctrSub = require('./funcPatchSubscription');
 const ctrAvatar = require('./funcSetAvatar');
+const ctrEmail = require('./funcGetEmail');
+const ctrRefetchEmail = require('./funcPostRefetchEmail');
+
 
 module.exports = {
     ctrSignUp, 
@@ -11,5 +14,7 @@ module.exports = {
     ctrCurrent,
     ctrLogout,
     ctrSub,
-    ctrAvatar
+    ctrAvatar,
+    ctrEmail,
+    ctrRefetchEmail
 };

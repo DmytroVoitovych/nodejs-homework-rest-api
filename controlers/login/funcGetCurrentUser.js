@@ -1,4 +1,4 @@
-const {User} = require('../../models/user');
+
 
 const funcGetCurrentUser = async (req, res) => {
     const { email, subscription } = req.user;
